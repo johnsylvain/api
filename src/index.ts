@@ -9,20 +9,26 @@ import {
 import { codeStatsTypeDefs, codeStatsConnector } from "./connectors/code-stats";
 
 const typeDefs = gql`
+  type Activity {
+    music: [LastFmStats]
+    code: CodeStats
+  }
+
   type Query {
     resume: Resume
-    lastfm: [LastFmStats]
-    soundcloud: [DiscographyItem]
-    codeStats: CodeStats
+    activity: Activity
+    discography: [DiscographyItem]
   }
 `;
 
 const resolvers = {
   Query: {
     resume: resumeConnector,
-    lastfm: lastFmConnector,
-    soundcloud: soundCloudConnector,
-    codeStats: codeStatsConnector
+    activity: () => ({
+      music: lastFmConnector,
+      code: codeStatsConnector
+    }),
+    discography: soundCloudConnector
   }
 };
 

@@ -26,7 +26,7 @@ export const codeStatsTypeDefs = gql`
   }
 `;
 
-function convert(seconds) {
+function convert(seconds): { hour: number; minute: number; seconds: number } {
   let hour: number;
   let minute: number;
 
