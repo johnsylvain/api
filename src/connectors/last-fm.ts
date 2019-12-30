@@ -4,7 +4,7 @@ import { gql } from "apollo-server";
 const LastFm = {
   get: async () => {
     const json = await get(
-      "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=johnsylvain&api_key=46427d6edd6b15adba1941374daff3f3&format=json&period=7day"
+      `http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=johnsylvain&api_key=${process.env.LASTFM_API_KEY}&format=json&period=7day`
     );
     const albums = json.topalbums.album
       .map(album => ({

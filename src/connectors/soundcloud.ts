@@ -1,16 +1,6 @@
 import { gql } from "apollo-server";
 import { get } from "../util/get";
 
-const SoundCloud = {
-  get: async () => {
-    const response = await get(
-      "https://api.soundcloud.com/users/johnsylvain/playlists?client_id=f17c1d67b83c86194fad2b1948061c9e"
-    );
-
-    return response;
-  }
-};
-
 export const soundCloudTypeDefs = gql`
   type DiscographyUser {
     id: Int
@@ -90,4 +80,10 @@ export const soundCloudTypeDefs = gql`
   }
 `;
 
-export const soundCloudConnector = async () => await SoundCloud.get();
+export const soundCloudConnector = async () => {
+  const response = await get(
+    `https://api.soundcloud.com/users/johnsylvain/playlists?client_id=${process.env.SOUNDCLOUD_API_KEY}`
+  );
+
+  return response;
+};
