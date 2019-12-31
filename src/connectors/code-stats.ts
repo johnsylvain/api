@@ -26,7 +26,9 @@ export const codeStatsTypeDefs = gql`
   }
 `;
 
-function convert(seconds): { hour: number; minute: number; seconds: number } {
+function convert(
+  seconds: number
+): { hour: number; minute: number; seconds: number } {
   let hour: number;
   let minute: number;
 
@@ -48,7 +50,7 @@ const getTime = async () => {
   const response = await get(
     `${baseUrl}092bac11-3129-45ed-91f8-c1770edfefe6.json`
   );
-  const seconds = response.data.reduce(
+  const seconds: number = response.data.reduce(
     (acc, cur) => acc + cur.grand_total.total_seconds,
     0
   );

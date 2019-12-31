@@ -10,6 +10,8 @@ export const resumeTypeDefs = gql`
     linkedin: String
     keybase: String
     spotify: String
+    blog: String
+    discography: String
   }
 
   type EducationStudy {
@@ -52,6 +54,7 @@ export const resumeTypeDefs = gql`
   type Resume {
     name: String
     occupation: String
+    bio: [String]
     profiles: Profiles
     businessCard: String
     education: Education
