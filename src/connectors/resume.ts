@@ -1,4 +1,5 @@
 import { gql } from "apollo-server";
+import { createType } from "../util/create-type";
 
 const data = {
   name: "John Sylvain",
@@ -94,60 +95,39 @@ const data = {
 };
 
 export const resumeTypeDefs = gql`
-  type Profiles {
-    github: String
-    soundcloud: String
-    linkedin: String
-    keybase: String
-    spotify: String
-  }
-
-  type EducationStudy {
-    major: String
-    minor: String
-  }
+  ${createType("Profiles", data.profiles)}
+  ${createType("EducationStudy", data.education.study)}
+  ${createType("Skills", data.skills)}
+  ${createType("ProjectLinks", data.projects[0].links)}
 
   type Education {
-    school: String
-    graduationDate: String
-    study: EducationStudy
+    school: String!
+    graduationDate: String!
+    study: EducationStudy!
   }
 
   type Experience {
-    company: String
-    position: String
-    date: String
+    company: String!
+    position: String!
+    date: String!
     description: [String]
   }
 
   type Project {
-    title: String
-    description: String
-    links: ProjectLinks
-  }
-
-  type ProjectLinks {
-    github: String
-    demo: String
-    docs: String
-  }
-
-  type Skills {
-    languages: [String]
-    frameworksAndLibraries: [String]
-    webTooling: [String]
-    database: [String]
+    title: String!
+    description: String!
+    links: ProjectLinks!
   }
 
   type Resume {
-    name: String
-    occupation: String
-    profiles: Profiles
-    businessCard: String
-    education: Education
-    experience: [Experience]
-    projects: [Project]
-    skills: Skills
+    name: String!
+    occupation: String!
+    profiles: Profiles!
+    businessCard: String!
+    education: Education!
+    experience: [Experience]!
+    projects: [Project]!
+    skills: Skills!
   }
 `;
 
