@@ -1,12 +1,13 @@
-import { gql } from "apollo-server";
-import { db } from "../config/firebase";
+import { gql } from 'apollo-server';
+import { db } from '../config/firebase';
 
-const ref = db.collection("resume-data").doc("ZZDyN5iMsYJbPhbi6Tgk");
+const ref = db.collection('resume-data').doc('ZZDyN5iMsYJbPhbi6Tgk');
 
 export const resumeTypeDefs = gql`
   type Profiles {
     github: String
     soundcloud: String
+    bandcamp: String
     linkedin: String
     keybase: String
     spotify: String
