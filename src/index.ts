@@ -7,6 +7,7 @@ import {
   soundCloudTypeDefs
 } from "./connectors/soundcloud";
 import { codeStatsTypeDefs, codeStatsConnector } from "./connectors/code-stats";
+import { discographyTypeDefs, discographyConnector } from "./connectors/discography";
 
 const typeDefs = gql`
   type Activity {
@@ -18,6 +19,7 @@ const typeDefs = gql`
     resume: Resume
     activity: Activity
     discography: [DiscographyItem]
+    music: [Release]
   }
 `;
 
@@ -28,7 +30,8 @@ const resolvers = {
       music: lastFmConnector,
       code: codeStatsConnector
     }),
-    discography: soundCloudConnector
+    discography: soundCloudConnector,
+    music: discographyConnector
   }
 };
 
@@ -38,7 +41,8 @@ const server = new ApolloServer({
     resumeTypeDefs,
     lastFmTypeDefs,
     soundCloudTypeDefs,
-    codeStatsTypeDefs
+    codeStatsTypeDefs,
+    discographyTypeDefs
   ],
   resolvers
 });
