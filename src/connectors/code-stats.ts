@@ -51,13 +51,13 @@ const getTime = async () => {
     `${baseUrl}092bac11-3129-45ed-91f8-c1770edfefe6.json`
   );
   const seconds: number = response.data.reduce(
-    (acc, cur) => acc + cur.grand_total.total_seconds,
+    (acc: number, cur: any) => acc + cur.grand_total.total_seconds,
     0
   );
   return {
     time: convert(seconds),
     graph: response.data
-      .map(i => ({
+      .map((i: any) => ({
         date: i.range.date,
         time: i.grand_total.digital,
         value: i.grand_total.total_seconds
@@ -70,7 +70,7 @@ const getLanguages = async () => {
   const response = await get(
     `${baseUrl}e13bf9c6-a046-4728-acde-cddb46881a04.json`
   );
-  return response.data.filter(i => i.name !== "Other").splice(0, 3);
+  return response.data.filter((i: any) => i.name !== "Other").splice(0, 3);
 };
 
 const CodeStats = {

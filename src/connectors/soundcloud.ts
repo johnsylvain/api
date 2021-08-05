@@ -82,7 +82,7 @@ export const soundCloudTypeDefs = gql`
 
 export const soundCloudConnector = async () => {
   const response = await get(
-    `https://api.soundcloud.com/users/johnsylvain/playlists?client_id=${process.env.SOUNDCLOUD_API_KEY}`
+    `https://api.soundcloud.com/users/147843669/playlists?client_id=${process.env.SOUNDCLOUD_API_KEY}`
   );
 
   return response;
